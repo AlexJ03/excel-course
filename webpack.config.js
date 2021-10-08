@@ -4,6 +4,8 @@ const CopyPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ESLintPlugin = require('eslint-webpack-plugin')
 
+
+
 module.exports = (env, argv) => {
 
     const isProd = argv.mode === 'production'
@@ -43,7 +45,11 @@ module.exports = (env, argv) => {
         target: 'web',
         context: path.resolve(__dirname, 'src'),
         entry: {
-            main: './index.js'
+            main: [
+                'core-js/stable',
+                'regenerator-runtime/runtime',
+                './index.js'
+            ],
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
